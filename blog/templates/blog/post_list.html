@@ -1,11 +1,24 @@
+{% load staticfiles %}
+
 <html>
     <head>
-        <title>Kitties and Unicorns</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+	<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    
+		<title>Kitties and Unicorns</title>
+		
     </head>
     <body>
-        <div>
+        <div class="page-header">
             <h1><a href="">Kitties and Unicorns Super-Blog</a></h1>
         </div>
+
+		<div class="content">
+			<img src= "{% static 'unicorn.gif' %}" alt="Unicorn" style="width:304px;height:228px;">		
+		</div>
+		
 <!--
        <div>
             <h2><a href="">Kitties and Unicorns are awesome!</a></h2>
@@ -20,12 +33,21 @@
 		</div>
 -->
 		
-		{% for post in posts %}
-			<div>
-				<h2><a href="">{{ post.title }}</a></h2>
-				<p>published: {{ post.published_date }}</p>
-				<p>{{ post.text|linebreaks }}</p>
-			</div>
-		{% endfor %}
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for post in posts %}
+                <div class="post">
+                    <div class="date">
+                        <p>published: {{ post.published_date }}</p>
+                    </div>
+                    <h2><a href="">{{ post.title }}</a></h2>
+                    <p>{{ post.text|linebreaks }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
     </body>
 </html>
